@@ -1,0 +1,72 @@
+plugins {
+	id 'maven-publish'
+	id 'java'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+	maven {
+		name = 'Fabric'
+		url = 'https://maven.fabricmc.net/'
+	}
+	maven {
+		name = 'jitpack'
+		url = 'https://jitpack.io'
+	}
+	mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+	implementation 'com.github.skeeto:Minicraft:21e7007696'
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc:sponge-mixin:0.11.0+mixin.0.8.5"
+	implementation "net.fabricmc:access-widener:2.1.0"
+	implementation "com.google.code.gson:gson:2.8.9"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+	it.options.release = 17
+}
+
+java {
+	withSourcesJar()
+}
+
+sourcesJar {
+
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${project.archivesBaseName}"}
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}
