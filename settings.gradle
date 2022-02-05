@@ -8,3 +8,27 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+//include 'src:main'
+findProject(':src:main')?.name = 'Minicraft'
+
+rootProject.name = "minifabric-api"
+
+def addModule(String dir, String name) {
+    include(dir)
+    project(":$dir").projectDir = new File("${rootDir.path}/modules/$dir")
+    project(":$dir").name = name
+}
+
+def addModule(String dir, String subdir, String name) {
+    include(dir)
+    project(":$dir").projectDir = new File("${rootDir.path}/modules/$dir/$subdir")
+    project(":$dir").name = name
+}
+
+//addModule("base", "minifabric-api-base")
+//addModule("modmenu", "minifabric-mod-menu")
+//addModule("resources", "minifabric-resource-loader-v1")
+//addModule("keybindings", "minifabric-keybinding-api-v1")
+//addModule("crash-report-info", "legacy-fabric-crash-report-info-v1")
+
+include("testmods")

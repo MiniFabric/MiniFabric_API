@@ -1,6 +1,7 @@
 plugins {
 	id 'maven-publish'
 	id 'java'
+	id "org.ajoberstar.grgit" version "3.1.1"
 }
 
 version = project.mod_version
@@ -15,15 +16,36 @@ repositories {
 		name = 'jitpack'
 		url = 'https://jitpack.io'
 	}
+	maven {
+		name = 'RewovenMC'
+		url = 'https://maven.rewovenmc.tk/'
+	}
+	maven {
+		name = 'MinicraftPlus'
+		url = 'https://repo.repsy.io/mvn/minicraftplus/minicraft'
+	}
 	mavenCentral()
 }
 
+def getSubprojectVersion(project, version) {
+	if (grgit == null) {
+		return version + "+nogit"
+	}
+	def latestCommits = grgit.log(paths: [rootProject.projectDir.toPath().relativize(project.projectDir.toPath() as java.nio.file.Path).toString()], maxCommits: 1)
+	if (latestCommits.isEmpty()) {
+		return version + "+uncommited"
+	} else {
+		return version + "+" + latestCommits.get(0).id.substring(0, 8) + DigestUtils.sha256Hex("${project.mc_version}").substring(0, 2)
+	}
+}
+
 dependencies {
-	implementation 'com.github.skeeto:Minicraft:21e7007696'
+	implementation "java.minicraft:minicraft-plus-revived:${project.minicraftplus_version}"
+	implementation 'io.github.pseudodistant:MinicraftGameProvider:1.1.1'
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc:sponge-mixin:0.11.0+mixin.0.8.5"
 	implementation "net.fabricmc:access-widener:2.1.0"
-	implementation "com.google.code.gson:gson:2.8.9"
+	implementation "com.fasterxml.jackson.core:jackson-databind:2.13.1"
 }
 
 processResources {
@@ -35,8 +57,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	it.options.release = 17
+	it.options.release = 16
 }
 
 java {

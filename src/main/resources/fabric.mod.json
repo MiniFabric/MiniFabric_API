@@ -1,37 +1,36 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "minifabric-api",
+  "name": "MiniFabric API",
   "version": "${version}",
+  "environment": "*",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Core API module providing key hooks and inter-compatibility features for Minicraft/MinicraftPlus.",
   "authors": [
-    "Me!"
+    "MiniFabric",
+    "PseudoDistant"
   ],
   "contact": {
     "homepage": "https://minifabric.github.io/",
-    "sources": "https://github.com/MiniFabric/MiniFabric-example-mod"
-  },
-
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
-
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "io.github.minifabric.example.ExampleMod"
-    ]
+    "sources": "https://github.com/MiniFabric/MiniFabric_API",
+    "discord": "https://discord.gg/MsQdqe52yT",
+    "issues": "https://github.com/MiniFabric/MiniFabric_API/issues"
   },
   "mixins": [
-    "modid.mixins.json"
+    "api.mixins.json"
   ],
+  "entrypoints": {
+    "main": [
+      "io.github.minifabric.minifabric_api.test.TestEntrypoint"
+    ]
+  },
+
+  "license": "Apache-2.0",
+  "icon": "assets/minifabric-api/icon.png",
 
   "depends": {
-    "fabricloader": ">=0.12.12",
-    "minicraft": "*",
-    "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "fabricloader": ">=0.13.0",
+    "minicraftplus": ">=2.0.7",
+    "java": ">=16"
   }
 }

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "minifabric-testmods",
+  "name": "MiniFabric Test Mods",
+  "version": "${version}",
+  "environment": "*",
+  "license": "Apache-2.0",
+  "icon": "assets/minifabric-api/icon.png",
+  "contact": {
+    "homepage": "stub",
+    "issues": "stub",
+    "sources": "stub"
+  },
+  "authors": [
+    "MiniFabric"
+  ],
+  "entrypoints": {
+    "main": [
+      "io.github.minifabric.minifabric_api.test.TestEntrypoint"
+    ]
+  },
+  "depends": {
+    "minicraftplus": "*"
+  },
+  "description": "Mods to test API features"
+}
