@@ -41,10 +41,9 @@ public class HostileEntityRegistryImpl {
             if (value <= storeEntitySpawnrate && entityNotSet) {
                 entityNotSet = false;
                 try {
-                    entity = (Entity) entities.get(x).getDeclaredConstructor(Integer.class).newInstance(lvl);
+                    entity = (Entity) entities.get(x).getConstructors()[0].newInstance(lvl);
                 } catch (InstantiationException |
                         IllegalAccessException |
-                        NoSuchMethodException |
                         InvocationTargetException e) {
                     Logger.error("Invalid entity called from HostileEntityRegistry:");
                     Logger.error(Arrays.toString(e.getStackTrace()));
@@ -64,10 +63,9 @@ public class HostileEntityRegistryImpl {
             if (value <= storeEntitySpawnrate && entityNotSet) {
                 entityNotSet = false;
                 try {
-                    entity = (Entity) dungeonEntities.get(x).getDeclaredConstructor(Integer.class).newInstance(lvl);
+                    entity = (Entity) dungeonEntities.get(x).getConstructors()[0].newInstance(lvl);
                 } catch (InstantiationException |
                         IllegalAccessException |
-                        NoSuchMethodException |
                         InvocationTargetException e) {
                     Logger.error("Invalid dungeon entity called from HostileEntityRegistry:");
                     Logger.error(Arrays.toString(e.getStackTrace()));

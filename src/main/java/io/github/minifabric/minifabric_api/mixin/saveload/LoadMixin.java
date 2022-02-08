@@ -19,8 +19,8 @@ import java.lang.reflect.InvocationTargetException;
 public class LoadMixin {
     @Unique private static String saveName;
 
-    @Inject(method = "<init>(Ljava/lang/String;Z)V", at = @At(value = "HEAD"))
-    private static void getWorldName(String worldname, boolean loadGame, CallbackInfo ci) {
+    @Inject(method = "<init>(Ljava/lang/String;Z)V", at = @At(value = "TAIL"))
+    private void getWorldName(String worldname, boolean loadGame, CallbackInfo ci) {
         saveName = worldname;
     }
 
@@ -71,15 +71,15 @@ public class LoadMixin {
             }
             for (int x = 0; x < HostileEntityRegistryImpl.entities.size(); x++) {
                 if (HostileEntityRegistryImpl.entities.get(x).getName().contains(string)) {
-                    cir.setReturnValue((Entity) HostileEntityRegistryImpl.entities.get(x).getDeclaredConstructor(Integer.class).newInstance(moblvl));
+                    cir.setReturnValue((Entity) HostileEntityRegistryImpl.entities.get(x).getConstructors()[0].newInstance(moblvl));
                 }
             }
             for (int x = 0; x < HostileEntityRegistryImpl.dungeonEntities.size(); x++) {
                 if (HostileEntityRegistryImpl.dungeonEntities.get(x).getName().contains(string)) {
-                    cir.setReturnValue((Entity) HostileEntityRegistryImpl.dungeonEntities.get(x).getDeclaredConstructor(Integer.class).newInstance(moblvl));
+                    cir.setReturnValue((Entity) HostileEntityRegistryImpl.dungeonEntities.get(x).getConstructors()[0].newInstance(moblvl));
                 }
             }
-        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             Logger.error("Invalid hostile entity found in save file for world" + saveName);
             e.printStackTrace();
         }

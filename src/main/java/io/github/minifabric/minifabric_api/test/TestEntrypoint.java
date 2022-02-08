@@ -20,7 +20,9 @@ public class TestEntrypoint implements ModInitializer {
     @Override
     public void onInitialize() {
         EntityRegistry.registerPassiveEntity(TestEntity.class, 48);
+        EntityRegistry.registerEnemyEntity(TestHostileEntity.class, 48, false);
         items.add(new FurnitureItem(new Spawner(new TestEntity()), 1, 28));
+        items.add(new FurnitureItem(new Spawner(new TestHostileEntity(1)), 1, 28));
         items.add(FoodItemInvoker.invokeInit("Tiny Potato", new Sprite(0, 0, FabricSpriteSheets.getSheetPos("minifabric-api", FabricSpriteSheets.Types.ITEMS)), 10));
         ItemsInvoker.invokeAddAll(items);
     }
