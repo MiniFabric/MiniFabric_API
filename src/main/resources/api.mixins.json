@@ -4,10 +4,17 @@
   "package": "io.github.minifabric.minifabric_api.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "entity.LevelMixin"
+    "entity.LevelMixin",
+    "item.FoodItemInvoker",
+    "item.ItemsInvoker",
+    "resource.ScreenMixin",
+    "saveload.LoadMixin",
+    "tiles.DirtTileInvoker",
+    "tiles.LevelGenMixin",
+    "tiles.TilesInvoker",
+    "tiles.TilesMixin"
   ],
   "client": [
-
   ],
   "injectors": {
     "defaultRequire": 1

@@ -31,4 +31,4 @@ def addModule(String dir, String subdir, String name) {
 //addModule("keybindings", "minifabric-keybinding-api-v1")
 //addModule("crash-report-info", "legacy-fabric-crash-report-info-v1")
 
-include("testmods")
+//include("testmods")

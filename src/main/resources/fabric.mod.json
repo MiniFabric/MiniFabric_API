@@ -8,7 +8,11 @@
   "description": "Core API module providing key hooks and inter-compatibility features for Minicraft/MinicraftPlus.",
   "authors": [
     "MiniFabric",
-    "PseudoDistant"
+    "PseudoDistant",
+    "coolsim"
+  ],
+  "contributors": [
+
   ],
   "contact": {
     "homepage": "https://minifabric.github.io/",

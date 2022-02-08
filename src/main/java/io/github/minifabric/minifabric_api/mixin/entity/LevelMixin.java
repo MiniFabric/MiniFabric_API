@@ -1,8 +1,10 @@
 package io.github.minifabric.minifabric_api.mixin.entity;
 
+import io.github.minifabric.minifabric_api.impl.entity.HostileEntityRegistryImpl;
 import io.github.minifabric.minifabric_api.impl.entity.PassiveEntityRegistryImpl;
+import minicraft.core.Updater;
 import minicraft.entity.Entity;
-import minicraft.entity.mob.PassiveMob;
+import minicraft.entity.mob.*;
 import minicraft.level.Level;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,11 +29,27 @@ public class LevelMixin {
         return false;
     }
 
+    @Redirect(method = "trySpawn", at = @At(value = "INVOKE", target = "Lminicraft/entity/mob/EnemyMob;checkStartPos(Lminicraft/level/Level;II)Z"))
+    public boolean disableVanillaHostileSpawn(Level level, int x, int y) {
+        return false;
+    }
+
     @Inject(method = "trySpawn", at = @At(value = "INVOKE", target = "Lminicraft/core/Updater;getTime()Lminicraft/core/Updater$Time;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
     public void rewritePassiveMobSpawn(CallbackInfo ci, int spawnSkipChance, boolean spawned, int i, int minLevel, int maxLevel, int lvl, int rnd, int nx, int ny) throws InstantiationException, IllegalAccessException {
         if (depth == 0 && PassiveMob.checkStartPos((Level) (Object) this, nx, ny)) {
-            add(PassiveEntityRegistryImpl.getEntity(random.nextInt(PassiveEntityRegistryImpl.getTotalSpawnrate()), lvl), nx, ny);
+            add(PassiveEntityRegistryImpl.getEntity(random.nextInt(PassiveEntityRegistryImpl.getTotalSpawnrate(Updater.getTime())), Updater.getTime()), nx, ny);
+            spawned = true;
+        }
+    }
 
+    @Inject(method = "trySpawn", at = @At(value = "INVOKE", target = "Lminicraft/core/Updater;getTime()Lminicraft/core/Updater$Time;", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
+    public void rewriteHostileMobSpawn(CallbackInfo ci, int spawnSkipChance, boolean spawned, int i, int minLevel, int maxLevel, int lvl, int rnd, int nx, int ny) throws InstantiationException, IllegalAccessException {
+        if ((Updater.getTime() == Updater.Time.Night && Updater.pastDay1 || depth != 0) && EnemyMob.checkStartPos((Level) (Object) this, nx, ny)) {
+            if (depth != -4) {
+                add(HostileEntityRegistryImpl.getEntity(random.nextInt(HostileEntityRegistryImpl.getTotalSpawnrate()), lvl), nx, ny);
+            } else {
+                add(HostileEntityRegistryImpl.getDungeonEntity(random.nextInt(HostileEntityRegistryImpl.getTotalDungeonSpawnrate()), lvl), nx, ny);
+            }
             spawned = true;
         }
     }

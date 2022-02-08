@@ -43,6 +43,9 @@ dependencies {
 	implementation "java.minicraft:minicraft-plus-revived:${project.minicraftplus_version}"
 	implementation 'io.github.pseudodistant:MinicraftGameProvider:1.1.1'
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation 'org.tinylog:tinylog-api:2.4.1'
+	implementation 'org.tinylog:tinylog-impl:2.4.1'
+	implementation 'org.jetbrains:annotations:22.0.0'
 	implementation "net.fabricmc:sponge-mixin:0.11.0+mixin.0.8.5"
 	implementation "net.fabricmc:access-widener:2.1.0"
 	implementation "com.fasterxml.jackson.core:jackson-databind:2.13.1"
