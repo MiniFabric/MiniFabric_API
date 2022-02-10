@@ -2,18 +2,32 @@ package io.github.minifabric.minifabric_api.test;
 
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
 import minicraft.core.io.Settings;
+import minicraft.entity.Entity;
 import minicraft.entity.mob.EnemyMob;
+import minicraft.entity.mob.Player;
 import minicraft.gfx.MobSprite;
 import minicraft.item.Items;
 
 public class TestHostileEntity extends EnemyMob {
     static MobSprite testSprite = new MobSprite(2, 0, 2, 2, 0, FabricSpriteSheets.getSheetPos("minifabric-api", FabricSpriteSheets.Types.ENTITIES));
     private static MobSprite[][][] sprites = new MobSprite[][][] {
-            {{testSprite}, {testSprite}, {testSprite}, {testSprite}},
-            {{testSprite}, {testSprite}, {testSprite}, {testSprite}}};
+            {{testSprite, testSprite, testSprite, testSprite}, {testSprite, testSprite, testSprite, testSprite},
+            {testSprite, testSprite, testSprite, testSprite}, {testSprite, testSprite, testSprite, testSprite}},
+            {{testSprite, testSprite, testSprite, testSprite}, {testSprite, testSprite, testSprite, testSprite},
+            {testSprite, testSprite, testSprite, testSprite}, {testSprite, testSprite, testSprite, testSprite}},
+            {{testSprite, testSprite, testSprite, testSprite}, {testSprite, testSprite, testSprite, testSprite},
+            {testSprite, testSprite, testSprite, testSprite}, {testSprite, testSprite, testSprite, testSprite}}
+    };
 
     public TestHostileEntity(int lvl) {
         super(lvl, sprites, 5, 100);
+    }
+
+    protected void touchedBy(Entity entity) {
+        super.touchedBy(entity);
+        if(entity instanceof Player) {
+            ((Player)entity).hurt(this, lvl * (Settings.get("diff").equals("Hard") ? 8 : 6));
+        }
     }
 
     public void die() {

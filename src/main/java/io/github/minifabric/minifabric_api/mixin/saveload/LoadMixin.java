@@ -2,6 +2,7 @@ package io.github.minifabric.minifabric_api.mixin.saveload;
 
 import io.github.minifabric.minifabric_api.impl.entity.HostileEntityRegistryImpl;
 import io.github.minifabric.minifabric_api.impl.entity.PassiveEntityRegistryImpl;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
 import minicraft.entity.Entity;
 import minicraft.saveload.Load;
 import org.spongepowered.asm.mixin.Mixin;

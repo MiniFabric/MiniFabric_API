@@ -5,9 +5,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(DirtTile.class)
-public class DirtTileInvoker {
+public interface DirtTileInvoker {
     @Invoker("dCol")
-    public static int invokeDCol(int depth) {
+    static int invokeDCol(int depth) {
         throw new AssertionError();
     }
 }

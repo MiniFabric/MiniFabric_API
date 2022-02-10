@@ -2,6 +2,7 @@ package io.github.minifabric.minifabric_api.mixin.entity;
 
 import io.github.minifabric.minifabric_api.impl.entity.HostileEntityRegistryImpl;
 import io.github.minifabric.minifabric_api.impl.entity.PassiveEntityRegistryImpl;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
 import minicraft.core.Updater;
 import minicraft.entity.Entity;
 import minicraft.entity.mob.*;

@@ -12,18 +12,19 @@ repositories {
 		name = 'Fabric'
 		url = 'https://maven.fabricmc.net/'
 	}
-	maven {
+	/*maven {
 		name = 'jitpack'
 		url = 'https://jitpack.io'
-	}
-	maven {
+	}*/
+	mavenLocal()
+	/*maven {
 		name = 'RewovenMC'
 		url = 'https://maven.rewovenmc.tk/'
-	}
-	maven {
+	}*/
+	/*maven {
 		name = 'MinicraftPlus'
 		url = 'https://repo.repsy.io/mvn/minicraftplus/minicraft'
-	}
+	}*/
 	mavenCentral()
 }
 
@@ -40,8 +41,8 @@ def getSubprojectVersion(project, version) {
 }
 
 dependencies {
-	implementation "java.minicraft:minicraft-plus-revived:${project.minicraftplus_version}"
-	implementation 'io.github.pseudodistant:MinicraftGameProvider:1.1.1'
+	implementation "java.minicraft:minicraft-plus:${project.minicraftplus_version}"
+	implementation 'io.github.pseudodistant:MinicraftGameProvider:1.1.2'
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation 'org.tinylog:tinylog-api:2.4.1'
 	implementation 'org.tinylog:tinylog-impl:2.4.1'

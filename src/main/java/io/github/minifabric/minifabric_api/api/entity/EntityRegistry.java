@@ -12,11 +12,7 @@ public class EntityRegistry {
      * @param spawnrate The spawnrate (Will be applied to all times of day)
      */
     public static void registerPassiveEntity(Class entity, int spawnrate) {
-        PassiveEntityRegistryImpl.entities.add(entity);
-        PassiveEntityRegistryImpl.entitySpawnrates.add(spawnrate);
-        PassiveEntityRegistryImpl.entitySpawnratesNighttime.add(spawnrate);
-        PassiveEntityRegistryImpl.entitySpawnratesMorning.add(spawnrate);
-        PassiveEntityRegistryImpl.entitySpawnratesEvening.add(spawnrate);
+        registerPassiveEntity(entity, spawnrate, spawnrate);
     }
 
     /**
@@ -26,11 +22,7 @@ public class EntityRegistry {
      * @param nighttimeSpawnRate The nighttime spawnrate
      */
     public static void registerPassiveEntity(Class entity, int daytimeSpawnrate, int nighttimeSpawnRate) {
-        PassiveEntityRegistryImpl.entities.add(entity);
-        PassiveEntityRegistryImpl.entitySpawnrates.add(daytimeSpawnrate);
-        PassiveEntityRegistryImpl.entitySpawnratesNighttime.add(nighttimeSpawnRate);
-        PassiveEntityRegistryImpl.entitySpawnratesMorning.add(daytimeSpawnrate);
-        PassiveEntityRegistryImpl.entitySpawnratesEvening.add(daytimeSpawnrate);
+        registerPassiveEntity(entity, daytimeSpawnrate, nighttimeSpawnRate, daytimeSpawnrate, daytimeSpawnrate);
     }
 
     /**
@@ -65,10 +57,17 @@ public class EntityRegistry {
         }
     }
 
+
     public static void registerAquaticEntity(Class entity, int spawnrate) {
         // TODO
     }
 
+
+    public static void registerMagmaticEntity(Class entity, int spawnrate) {
+
+    }
+
+    /** Returns a list of every entity in all registries */
     public static ArrayList<Class> getEntityList() {
         ArrayList<Class> totalEntityList = PassiveEntityRegistryImpl.entities;
         totalEntityList.addAll(HostileEntityRegistryImpl.entities);
