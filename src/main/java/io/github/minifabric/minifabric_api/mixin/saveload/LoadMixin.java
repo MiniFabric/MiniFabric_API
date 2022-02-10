@@ -35,27 +35,18 @@ public class LoadMixin {
 
     @Redirect(method = "loadEntity(Ljava/lang/String;Lminicraft/saveload/Version;Z)Lminicraft/entity/Entity;", at = @At(value = "INVOKE", target = "Ljava/lang/Class;forName(Ljava/lang/String;)Ljava/lang/Class;"))
     private static Class<?> tryCustomEntity(String className) throws ClassNotFoundException {
+        String emaNssalc = reverseString(className);
+        String[] segmentedClassname = emaNssalc.split("\\.");
+        String basicName = reverseString(segmentedClassname[0]);
         for (int notx = 3; notx < PassiveEntityRegistryImpl.entities.size(); notx++) {
-            String emaNssalc = reverseString(className);
-            String[] segmentedClassname = emaNssalc.split("\\.");
-            String basicName = reverseString(segmentedClassname[0]);
-
             if (PassiveEntityRegistryImpl.entities.get(notx).getName().contains(basicName)) {
                 return PassiveEntityRegistryImpl.entities.get(notx);
             }
         } for (int notx = 4; notx < HostileEntityRegistryImpl.entities.size(); notx++) {
-            String emaNssalc = reverseString(className);
-            String[] segmentedClassname = emaNssalc.split("\\.");
-            String basicName = reverseString(segmentedClassname[0]);
-
             if (HostileEntityRegistryImpl.entities.get(notx).getName().contains(basicName)) {
                 return HostileEntityRegistryImpl.entities.get(notx);
             }
         } for (int notx = 2; notx < HostileEntityRegistryImpl.dungeonEntities.size(); notx++) {
-            String emaNssalc = reverseString(className);
-            String[] segmentedClassname = emaNssalc.split("\\.");
-            String basicName = reverseString(segmentedClassname[0]);
-
             if (HostileEntityRegistryImpl.dungeonEntities.get(notx).getName().contains(basicName)) {
                 return HostileEntityRegistryImpl.dungeonEntities.get(notx);
             }
