@@ -4,7 +4,8 @@ import io.github.minifabric.minifabric_api.impl.entity.HostileEntityRegistryImpl
 import io.github.minifabric.minifabric_api.impl.entity.PassiveEntityRegistryImpl;
 import minicraft.core.Updater;
 import minicraft.entity.Entity;
-import minicraft.entity.mob.*;
+import minicraft.entity.mob.EnemyMob;
+import minicraft.entity.mob.PassiveMob;
 import minicraft.level.Level;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

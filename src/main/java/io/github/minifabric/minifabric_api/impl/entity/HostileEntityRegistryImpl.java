@@ -1,7 +1,12 @@
 package io.github.minifabric.minifabric_api.impl.entity;
 
 import minicraft.entity.Entity;
-import minicraft.entity.mob.*;
+import minicraft.entity.mob.Creeper;
+import minicraft.entity.mob.Knight;
+import minicraft.entity.mob.Skeleton;
+import minicraft.entity.mob.Slime;
+import minicraft.entity.mob.Snake;
+import minicraft.entity.mob.Zombie;
 import org.tinylog.Logger;
 
 import java.lang.reflect.InvocationTargetException;

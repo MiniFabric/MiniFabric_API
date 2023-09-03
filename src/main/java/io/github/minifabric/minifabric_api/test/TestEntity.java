@@ -5,7 +5,6 @@ import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets.Type
 import minicraft.core.io.Settings;
 import minicraft.entity.mob.PassiveMob;
 import minicraft.gfx.MobSprite;
-import minicraft.gfx.Sprite;
 import minicraft.item.Items;
 
 public class TestEntity extends PassiveMob {

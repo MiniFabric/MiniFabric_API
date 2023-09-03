@@ -1,10 +1,9 @@
 package io.github.minifabric.minifabric_api.mixin.tiles;
 
+import minicraft.level.tile.Tiles;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-
-import minicraft.level.tile.Tiles;
 
 @Mixin(Tiles.class)
 public abstract class TilesMixin {

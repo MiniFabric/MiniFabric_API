@@ -1,5 +1,20 @@
 package io.github.minifabric.minifabric_api.mixin.resource;
 
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets.Types;
+import minicraft.gfx.Screen;
+import minicraft.gfx.SpriteSheet;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.include.com.google.common.io.ByteStreams;
+import org.tinylog.Logger;
+
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,27 +24,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import net.fabricmc.loader.impl.util.log.Log;
-import net.fabricmc.loader.impl.util.log.LogCategory;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets.Types;
-
-import minicraft.gfx.Screen;
-import minicraft.gfx.SpriteSheet;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
-import org.spongepowered.include.com.google.common.io.ByteStreams;
-import org.tinylog.Logger;
 
 @Mixin(value = Screen.class, priority = 750)
 public abstract class ScreenMixin {
