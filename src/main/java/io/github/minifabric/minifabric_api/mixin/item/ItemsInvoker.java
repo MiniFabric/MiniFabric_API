@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 @Mixin(Items.class)
 public interface ItemsInvoker {
-    @Invoker("addAll")
-    static void invokeAddAll(ArrayList<Item> items) {
-        throw new AssertionError();
-    }
-
-    @Invoker("add")
-    static void invokeAdd(Item i) {
-        throw new AssertionError();
-    }
+	@Invoker("addAll")
+	static void invokeAddAll(ArrayList<Item> items) {
+		throw new AssertionError();
+	}
+	
+	@Invoker("add")
+	static void invokeAdd(Item i) {
+		throw new AssertionError();
+	}
 }

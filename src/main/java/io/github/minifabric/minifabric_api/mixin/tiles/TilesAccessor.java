@@ -11,6 +11,6 @@ import java.util.HashMap;
 public interface TilesAccessor {
 	@Accessor("tiles")
 	static HashMap<Short, Tile> getTilesIDMap() {
-		throw new RuntimeException("Accessor method body called");
+		throw new AssertionError();
 	}
 }
