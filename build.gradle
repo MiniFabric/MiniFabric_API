@@ -76,6 +76,17 @@ jar {
 	}
 }
 
+task copyMod {
+	doLast {
+		copy {
+			from jar
+			into "mods"
+		}
+	}
+}
+
+build.dependsOn copyMod
+
 task setupIdeaWorkspace {
 	doLast {
 		project.file(".idea/runConfigurations").mkdirs()
@@ -90,7 +101,7 @@ task setupIdeaWorkspace {
 				option(name: "ALTERNATIVE_JRE_PATH_ENABLED", value: "true")
 				option(name: "MAIN_CLASS_NAME", value: "net.fabricmc.loader.impl.launch.knot.KnotClient")
 				option(name: "VM_PARAMETERS", value: jarPath)
-				module(name: "MiniFabric-example-mod-master.main")
+				module(name: "minifabric-api.main")
 				method(v: "2") {
 					option(name: "Gradle.BeforeRunTask", enabled: "true", tasks: "build", externalProjectPath: "\$PROJECT_DIR\$", vmOptions: "", scriptParameters: "")
 				}

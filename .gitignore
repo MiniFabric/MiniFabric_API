@@ -32,3 +32,6 @@ bin/
 
 run/
 /fabricloader.log
+
+mods/
+logs/
