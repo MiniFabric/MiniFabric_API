@@ -79,6 +79,15 @@ public class SpriteBuilder {
 	}
 	
 	/**
+	 * Mark sprite as one-pixel sprite (will use only upper left pixel)
+	 * @return same {@link SpriteBuilder} instance
+	 */
+	public SpriteBuilder onePixel() {
+		onePixel = true;
+		return this;
+	}
+	
+	/**
 	 * Finish Sprite building
 	 * @return {@link Sprite}
 	 */

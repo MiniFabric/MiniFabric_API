@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HostileEntityRegistryImpl {
-    public static ArrayList<Class> entities = new ArrayList<>(Arrays.asList(Slime.class, Zombie.class, Skeleton.class, Creeper.class));
+    public static ArrayList<Class<? extends Entity>> entities = new ArrayList<>(Arrays.asList(Slime.class, Zombie.class, Skeleton.class, Creeper.class));
     public static ArrayList<Integer> entitySpawnrates = new ArrayList<>(Arrays.asList(40, 35, 15, 10));
 
-    public static ArrayList<Class> dungeonEntities = new ArrayList<>(Arrays.asList(Snake.class, Knight.class));
+    public static ArrayList<Class<? extends Entity>> dungeonEntities = new ArrayList<>(Arrays.asList(Snake.class, Knight.class));
     public static ArrayList<Integer> dungeonSpawnrates = new ArrayList<>(Arrays.asList(55, 45));
 
     public static int getTotalSpawnrate() {
