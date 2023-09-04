@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FabricSpriteSheets {
-	
 	protected String modid;
 	protected int sheetPos;
 	protected Types type;
 
 	public static boolean spriteSheetsProcessed = false;
 
-	public static List<FabricSpriteSheets> sheets = new ArrayList<FabricSpriteSheets>();
+	public static List<FabricSpriteSheets> sheets = new ArrayList<>();
 	
 	public FabricSpriteSheets(String modid, int sheetPosition, Types type) {
 		this.modid = modid;

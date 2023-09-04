@@ -12,7 +12,6 @@
 		"tiles.DirtTileInvoker",
 		"tiles.LevelGenMixin",
 		"tiles.TilesAccessor",
-		"tiles.TilesInvoker",
 		"tiles.TilesMixin"
 	],
 	"client": [

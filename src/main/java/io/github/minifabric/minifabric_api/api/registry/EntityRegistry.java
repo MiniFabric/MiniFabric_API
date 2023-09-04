@@ -1,7 +1,7 @@
-package io.github.minifabric.minifabric_api.api.entity;
+package io.github.minifabric.minifabric_api.api.registry;
 
-import io.github.minifabric.minifabric_api.impl.entity.HostileEntityRegistryImpl;
-import io.github.minifabric.minifabric_api.impl.entity.PassiveEntityRegistryImpl;
+import io.github.minifabric.minifabric_api.impl.registry.HostileEntityRegistryImpl;
+import io.github.minifabric.minifabric_api.impl.registry.PassiveEntityRegistryImpl;
 
 import java.util.ArrayList;
 

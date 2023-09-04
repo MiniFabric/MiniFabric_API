@@ -1,12 +1,12 @@
 package io.github.minifabric.minifabric_api.test;
 
-import io.github.minifabric.minifabric_api.api.entity.EntityRegistry;
-import io.github.minifabric.minifabric_api.api.tiles.TileRegistry;
-import io.github.minifabric.minifabric_api.impl.items.FabricTileItem;
-import io.github.minifabric.minifabric_api.impl.items.ItemsRegistry;
+import io.github.minifabric.minifabric_api.api.registry.EntityRegistry;
+import io.github.minifabric.minifabric_api.api.registry.ItemRegistry;
+import io.github.minifabric.minifabric_api.api.registry.TileRegistry;
+import io.github.minifabric.minifabric_api.impl.items.FabricTileItemImpl;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets.Types;
-import io.github.minifabric.minifabric_api.impl.tiles.FabricTile;
+import io.github.minifabric.minifabric_api.impl.tiles.FabricTileImpl;
 import io.github.minifabric.minifabric_api.mixin.item.FoodItemInvoker;
 import minicraft.entity.furniture.Spawner;
 import minicraft.gfx.Sprite;
@@ -22,7 +22,7 @@ public class TestEntrypoint implements ModInitializer {
 		EntityRegistry.registerEnemyEntity(TestHostileEntity.class, 48, false);
 		
 		System.out.println("Register Items");
-		ItemsRegistry.register(
+		ItemRegistry.register(
 			new FurnitureItem(new Spawner(new TestEntity()), 1, 28),
 			new FurnitureItem(new Spawner(new TestHostileEntity(1)), 1, 28),
 			FoodItemInvoker.invokeInit(
@@ -34,11 +34,11 @@ public class TestEntrypoint implements ModInitializer {
 		
 		System.out.println("Register tiles");
 		String name = "Test Tile";
-		Tile testTile = new FabricTile(
+		Tile testTile = new FabricTileImpl(
 			name,
 			new Sprite(0, 0, 3, 3, FabricSpriteSheets.getSheetPos("minifabric-api", Types.TILES))
 		);
 		TileRegistry.register(testTile);
-		ItemsRegistry.register(new FabricTileItem(name, (new Sprite(0, 1)), name, "grass"));
+		ItemRegistry.register(new FabricTileItemImpl(name, (new Sprite(0, 1)), name, "grass"));
 	}
 }

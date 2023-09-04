@@ -1,4 +1,4 @@
-package io.github.minifabric.minifabric_api.impl.items;
+package io.github.minifabric.minifabric_api.api.registry;
 
 import io.github.minifabric.minifabric_api.mixin.item.ItemsInvoker;
 import minicraft.item.Item;
@@ -6,7 +6,7 @@ import minicraft.item.Item;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ItemsRegistry {
+public class ItemRegistry {
 	public static void register(Item item) {
 		ItemsInvoker.invokeAdd(item);
 	}

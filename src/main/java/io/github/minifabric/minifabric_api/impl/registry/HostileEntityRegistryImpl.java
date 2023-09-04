@@ -1,4 +1,4 @@
-package io.github.minifabric.minifabric_api.impl.entity;
+package io.github.minifabric.minifabric_api.impl.registry;
 
 import minicraft.entity.Entity;
 import minicraft.entity.mob.Creeper;
