@@ -1,13 +1,14 @@
 package io.github.minifabric.minifabric_api.test;
 
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.core.io.Settings;
 import minicraft.entity.mob.EnemyMob;
 import minicraft.gfx.MobSprite;
 import minicraft.item.Items;
 
 public class TestHostileEntity extends EnemyMob {
-    static MobSprite testSprite = new MobSprite(2, 0, 2, 2, 0, FabricSpriteSheets.getSheetPos("minifabric-api", FabricSpriteSheets.Types.ENTITIES));
+    static MobSprite testSprite = new MobSprite(2, 0, 2, 2, 0, FabricSpriteSheet.getSheetPos("minifabric-api", SpriteSheetType.ENTITIES));
     private static MobSprite[][][] sprites = new MobSprite[][][] {
             {{testSprite}, {testSprite}, {testSprite}, {testSprite}},
             {{testSprite}, {testSprite}, {testSprite}, {testSprite}}};

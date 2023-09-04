@@ -1,14 +1,14 @@
 package io.github.minifabric.minifabric_api.test;
 
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets.Types;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.core.io.Settings;
 import minicraft.entity.mob.PassiveMob;
 import minicraft.gfx.MobSprite;
 import minicraft.item.Items;
 
 public class TestEntity extends PassiveMob {
-    static MobSprite testSprite = new MobSprite(0, 0, 2, 2, 0, FabricSpriteSheets.getSheetPos("minifabric-api", Types.ENTITIES));
+    static MobSprite testSprite = new MobSprite(0, 0, 2, 2, 0, FabricSpriteSheet.getSheetPos("minifabric-api", SpriteSheetType.ENTITIES));
 
     private static MobSprite[][] sprites = new MobSprite[][] {
             {testSprite, testSprite},

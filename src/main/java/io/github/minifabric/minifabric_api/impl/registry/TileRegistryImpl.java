@@ -24,6 +24,7 @@ public class TileRegistryImpl {
 	public static void register(Tile tile) {
 		short id = getID();
 		TILE_BY_ID.put(id, tile);
+		TILE_BY_NAME.put(tile.name.toUpperCase(Locale.ROOT), tile);
 		tile.id = id;
 	}
 	

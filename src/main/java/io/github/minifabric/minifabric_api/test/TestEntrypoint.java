@@ -3,9 +3,9 @@ package io.github.minifabric.minifabric_api.test;
 import io.github.minifabric.minifabric_api.api.registry.EntityRegistry;
 import io.github.minifabric.minifabric_api.api.registry.ItemRegistry;
 import io.github.minifabric.minifabric_api.api.registry.TileRegistry;
+import io.github.minifabric.minifabric_api.api.sprite.SpriteBuilder;
 import io.github.minifabric.minifabric_api.impl.items.FabricTileItemImpl;
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets.Types;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import io.github.minifabric.minifabric_api.impl.tiles.FabricTileImpl;
 import io.github.minifabric.minifabric_api.mixin.item.FoodItemInvoker;
 import minicraft.entity.furniture.Spawner;
@@ -27,17 +27,14 @@ public class TestEntrypoint implements ModInitializer {
 			new FurnitureItem(new Spawner(new TestHostileEntity(1)), 1, 28),
 			FoodItemInvoker.invokeInit(
 				"Tiny Potato",
-				new Sprite(0, 0, FabricSpriteSheets.getSheetPos("minifabric-api", FabricSpriteSheets.Types.ITEMS)),
+				SpriteBuilder.start("minifabric-api", SpriteSheetType.ITEMS).build(),
 				10
 			)
 		);
 		
 		System.out.println("Register tiles");
 		String name = "Test Tile";
-		Tile testTile = new FabricTileImpl(
-			name,
-			new Sprite(0, 0, 3, 3, FabricSpriteSheets.getSheetPos("minifabric-api", Types.TILES))
-		);
+		Tile testTile = new FabricTileImpl(name, SpriteBuilder.start("minifabric-api", SpriteSheetType.TILES).size(3, 3).build());
 		TileRegistry.register(testTile);
 		ItemRegistry.register(new FabricTileItemImpl(name, (new Sprite(0, 1)), name, "grass"));
 	}

@@ -1,7 +1,7 @@
 package io.github.minifabric.minifabric_api.mixin.resource;
 
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets;
-import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheets.Types;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
+import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.gfx.Screen;
 import minicraft.gfx.SpriteSheet;
 import net.fabricmc.loader.api.FabricLoader;
@@ -33,22 +33,22 @@ public abstract class ScreenMixin {
 
 	@Inject(at = @At("RETURN"), method = "<init>(Lminicraft/gfx/SpriteSheet;Lminicraft/gfx/SpriteSheet;Lminicraft/gfx/SpriteSheet;Lminicraft/gfx/SpriteSheet;Lminicraft/gfx/SpriteSheet;)V")
 	private void init(SpriteSheet itemSheet, SpriteSheet tileSheet, SpriteSheet entitySheet, SpriteSheet guiSheet, SpriteSheet skinsSheet, CallbackInfo info) {
-		if (!FabricSpriteSheets.spriteSheetsProcessed) {
+		if (!FabricSpriteSheet.spriteSheetsProcessed) {
 			for (ModContainer container : FabricLoader.getInstance().getAllMods()) {
 				Path path = container.getRootPath();
 				path = path.toAbsolutePath().normalize();
 
-				addToSheets(container, path, Types.ITEMS);
-				addToSheets(container, path, Types.TILES);
-				addToSheets(container, path, Types.ENTITIES);
-				addToSheets(container, path, Types.GUI);
-				addToSheets(container, path, Types.SKINS);
-				FabricSpriteSheets.spriteSheetsProcessed = true;
+				addToSheets(container, path, SpriteSheetType.ITEMS);
+				addToSheets(container, path, SpriteSheetType.TILES);
+				addToSheets(container, path, SpriteSheetType.ENTITIES);
+				addToSheets(container, path, SpriteSheetType.GUI);
+				addToSheets(container, path, SpriteSheetType.SKINS);
+				FabricSpriteSheet.spriteSheetsProcessed = true;
 			}
 		}
 	}
 	
-	private void addToSheets(ModContainer container, Path path, Types type) {
+	private void addToSheets(ModContainer container, Path path, SpriteSheetType type) {
 		/* TODO: Still mostly coolsim's impl, need to get it working with multiple sheets.
 		 * It could probably be done by scanning the path for any files containing the type name,
 		 * allowing for something like `entities2.png`, or `tiles_mechanical.png`, or even
@@ -70,7 +70,7 @@ public abstract class ScreenMixin {
 				tempSheets.add(new SpriteSheet(ImageIO.read(tempFile)));
 				
 				this.sheets = tempSheets.toArray(new SpriteSheet[0]);
-				FabricSpriteSheets.sheets.add(new FabricSpriteSheets(container.getMetadata().getId(), this.sheets.length - 1, type));
+				FabricSpriteSheet.SHEETS.add(new FabricSpriteSheet(container.getMetadata().getId(), this.sheets.length - 1, type));
 				
 			} catch(IOException ignored) {
 			}
