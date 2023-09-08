@@ -3,7 +3,6 @@ package io.github.minifabric.minifabric_api.impl.registry;
 import io.github.minifabric.minifabric_api.impl.logger.InternalLogger;
 import io.github.minifabric.minifabric_api.mixin.tiles.TilesAccessor;
 import minicraft.level.tile.Tile;
-import org.spongepowered.asm.logging.Level;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -32,7 +31,7 @@ public class TileRegistryImpl {
 		name = name.toUpperCase(Locale.ROOT);
 		Tile tile = TILE_BY_NAME.get(name);
 		if (tile == null) {
-			InternalLogger.LOGGER.log(Level.INFO, "Tile with name " + name + " is missing");
+			InternalLogger.warn("Tile with name " + name + " is missing");
 			return DEFAULT;
 		}
 		return tile;
