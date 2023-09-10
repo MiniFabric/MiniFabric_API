@@ -1,7 +1,12 @@
-package io.github.minifabric.minifabric_api.impl.entity;
+package io.github.minifabric.minifabric_api.impl.registry;
 
 import minicraft.entity.Entity;
-import minicraft.entity.mob.*;
+import minicraft.entity.mob.Creeper;
+import minicraft.entity.mob.Knight;
+import minicraft.entity.mob.Skeleton;
+import minicraft.entity.mob.Slime;
+import minicraft.entity.mob.Snake;
+import minicraft.entity.mob.Zombie;
 import org.tinylog.Logger;
 
 import java.lang.reflect.InvocationTargetException;
@@ -9,10 +14,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HostileEntityRegistryImpl {
-    public static ArrayList<Class> entities = new ArrayList<>(Arrays.asList(Slime.class, Zombie.class, Skeleton.class, Creeper.class));
+    public static ArrayList<Class<? extends Entity>> entities = new ArrayList<>(Arrays.asList(Slime.class, Zombie.class, Skeleton.class, Creeper.class));
     public static ArrayList<Integer> entitySpawnrates = new ArrayList<>(Arrays.asList(40, 35, 15, 10));
 
-    public static ArrayList<Class> dungeonEntities = new ArrayList<>(Arrays.asList(Snake.class, Knight.class));
+    public static ArrayList<Class<? extends Entity>> dungeonEntities = new ArrayList<>(Arrays.asList(Snake.class, Knight.class));
     public static ArrayList<Integer> dungeonSpawnrates = new ArrayList<>(Arrays.asList(55, 45));
 
     public static int getTotalSpawnrate() {

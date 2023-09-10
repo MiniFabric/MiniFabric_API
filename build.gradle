@@ -1,28 +1,27 @@
 plugins {
-	id 'maven-publish'
-	id 'java'
+	id "maven-publish"
+	id "java"
 	id "org.ajoberstar.grgit" version "3.1.1"
 }
 
 version = project.mod_version
 group = project.maven_group
 
+@Grab('org.codehaus.groovy:groovy-xml:3.0.9')
+import groovy.xml.MarkupBuilder
+
 repositories {
 	maven {
-		name = 'Fabric'
-		url = 'https://maven.fabricmc.net/'
+		name = "Fabric"
+		url = "https://maven.fabricmc.net/"
 	}
 	maven {
-		name = 'jitpack'
-		url = 'https://jitpack.io'
+		name = "jitpack"
+		url = "https://jitpack.io"
 	}
 	maven {
-		name = 'RewovenMC'
-		url = 'https://maven.rewovenmc.tk/'
-	}
-	maven {
-		name = 'MinicraftPlus'
-		url = 'https://repo.repsy.io/mvn/minicraftplus/minicraft'
+		name = "MiniFabric"
+		url = "https://repo.repsy.io/mvn/distant/minifabric/"
 	}
 	mavenCentral()
 }
@@ -40,12 +39,12 @@ def getSubprojectVersion(project, version) {
 }
 
 dependencies {
-	implementation "java.minicraft:minicraft-plus-revived:${project.minicraftplus_version}"
-	implementation 'io.github.pseudodistant:MinicraftGameProvider:1.1.1'
+	implementation "com.github.MinicraftPlus:minicraft-plus-revived:${project.minicraftplus_version}"
+	implementation "io.github.pseudodistant:MinicraftGameProvider:${project.provider_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	implementation 'org.tinylog:tinylog-api:2.4.1'
-	implementation 'org.tinylog:tinylog-impl:2.4.1'
-	implementation 'org.jetbrains:annotations:22.0.0'
+	implementation "org.tinylog:tinylog-api:2.4.1"
+	implementation "org.tinylog:tinylog-impl:2.4.1"
+	implementation "org.jetbrains:annotations:22.0.0"
 	implementation "net.fabricmc:sponge-mixin:0.11.0+mixin.0.8.5"
 	implementation "net.fabricmc:access-widener:2.1.0"
 	implementation "com.fasterxml.jackson.core:jackson-databind:2.13.1"
@@ -74,6 +73,40 @@ sourcesJar {
 jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
+	}
+}
+
+task copyMod {
+	doLast {
+		copy {
+			from jar
+			into "mods"
+		}
+	}
+}
+
+build.dependsOn copyMod
+
+task setupIdeaWorkspace {
+	doLast {
+		project.file(".idea/runConfigurations").mkdirs()
+
+		def writer = new FileWriter(new File(".idea/runConfigurations/Launch_Client.xml"))
+		def xml = new MarkupBuilder(writer)
+		def jarPath = "-Dfabric.gameJarPath=\"" + configurations.compileClasspath[0] + "\""
+
+		xml.component(name: "ProjectRunConfigurationManager") {
+			configuration(default: "false", name: "Launch Client", type: "Application", factoryName: "Application") {
+				option(name: "ALTERNATIVE_JRE_PATH", value: "17")
+				option(name: "ALTERNATIVE_JRE_PATH_ENABLED", value: "true")
+				option(name: "MAIN_CLASS_NAME", value: "net.fabricmc.loader.impl.launch.knot.KnotClient")
+				option(name: "VM_PARAMETERS", value: jarPath)
+				module(name: "minifabric-api.main")
+				method(v: "2") {
+					option(name: "Gradle.BeforeRunTask", enabled: "true", tasks: "build", externalProjectPath: "\$PROJECT_DIR\$", vmOptions: "", scriptParameters: "")
+				}
+			}
+		}
 	}
 }
 

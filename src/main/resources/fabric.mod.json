@@ -1,40 +1,40 @@
 {
-  "schemaVersion": 1,
-  "id": "minifabric-api",
-  "name": "MiniFabric API",
-  "version": "${version}",
-  "environment": "*",
+	"schemaVersion": 1,
+	"id": "minifabric-api",
+	"name": "MiniFabric API",
+	"version": "${version}",
+	"environment": "*",
 
-  "description": "Core API module providing key hooks and inter-compatibility features for Minicraft/MinicraftPlus.",
-  "authors": [
-    "MiniFabric",
-    "PseudoDistant",
-    "coolsim"
-  ],
-  "contributors": [
+	"description": "Core API module providing key hooks and inter-compatibility features for Minicraft/MinicraftPlus.",
+	"authors": [
+		"MiniFabric",
+		"PseudoDistant",
+		"coolsim"
+	],
+	"contributors": [
+		"paulevs"
+	],
+	"contact": {
+		"homepage": "https://minifabric.github.io/",
+		"sources": "https://github.com/MiniFabric/MiniFabric_API",
+		"discord": "https://discord.gg/MsQdqe52yT",
+		"issues": "https://github.com/MiniFabric/MiniFabric_API/issues"
+	},
+	"mixins": [
+		"api.mixins.json"
+	],
+	"entrypoints": {
+		"main": [
+			"io.github.minifabric.minifabric_api.test.TestEntrypoint"
+		]
+	},
 
-  ],
-  "contact": {
-    "homepage": "https://minifabric.github.io/",
-    "sources": "https://github.com/MiniFabric/MiniFabric_API",
-    "discord": "https://discord.gg/MsQdqe52yT",
-    "issues": "https://github.com/MiniFabric/MiniFabric_API/issues"
-  },
-  "mixins": [
-    "api.mixins.json"
-  ],
-  "entrypoints": {
-    "main": [
-      "io.github.minifabric.minifabric_api.test.TestEntrypoint"
-    ]
-  },
+	"license": "Apache-2.0",
+	"icon": "assets/minifabric-api/icon.png",
 
-  "license": "Apache-2.0",
-  "icon": "assets/minifabric-api/icon.png",
-
-  "depends": {
-    "fabricloader": ">=0.13.0",
-    "minicraftplus": ">=2.0.7",
-    "java": ">=16"
-  }
+	"depends": {
+		"fabricloader": ">=0.13.0",
+		"minicraftplus": ">=2.0.7",
+		"java": ">=16"
+	}
 }
