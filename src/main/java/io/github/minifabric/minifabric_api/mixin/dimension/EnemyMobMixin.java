@@ -2,8 +2,8 @@ package io.github.minifabric.minifabric_api.mixin.dimension;
 
 import minicraft.entity.mob.EnemyMob;
 import minicraft.entity.mob.MobAi;
-import minicraft.gfx.MobSprite;
 import minicraft.gfx.Screen;
+import minicraft.gfx.SpriteLinker;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EnemyMob.class)
 public abstract class EnemyMobMixin extends MobAi {
-	@Shadow protected MobSprite[][][] lvlSprites;
+	@Shadow protected SpriteLinker.LinkedSprite[][][] lvlSprites;
 	@Shadow public int lvl;
 	
 	/**
@@ -24,7 +24,7 @@ public abstract class EnemyMobMixin extends MobAi {
 	 * @param rwTime    How long the mob will walk in a random direction. (random walk duration)
 	 * @param rwChance  The chance of this mob will walk in a random direction (random walk chance)
 	 */
-	protected EnemyMobMixin(MobSprite[][] sprites, int maxHealth, int lifetime, int rwTime, int rwChance) {
+	protected EnemyMobMixin(SpriteLinker.LinkedSprite[][] sprites, int maxHealth, int lifetime, int rwTime, int rwChance) {
 		super(sprites, maxHealth, lifetime, rwTime, rwChance);
 	}
 	

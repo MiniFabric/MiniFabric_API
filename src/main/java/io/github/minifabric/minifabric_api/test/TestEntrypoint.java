@@ -14,6 +14,8 @@ import minicraft.entity.Entity;
 import minicraft.entity.furniture.Spawner;
 import minicraft.entity.mob.Player;
 import minicraft.gfx.Sprite;
+import minicraft.gfx.SpriteAnimation;
+import minicraft.gfx.SpriteLinker;
 import minicraft.item.FurnitureItem;
 import minicraft.level.Level;
 import minicraft.level.tile.Tile;
@@ -28,20 +30,20 @@ public class TestEntrypoint implements ModInitializer {
 		
 		System.out.println("Register Items");
 		ItemRegistry.register(
-			new FurnitureItem(new Spawner(new TestEntity()), 1, 28),
-			new FurnitureItem(new Spawner(new TestHostileEntity(1)), 1, 28),
+			new FurnitureItem(new Spawner(new TestEntity())),
+			new FurnitureItem(new Spawner(new TestHostileEntity(1))),
 			FoodItemInvoker.invokeInit(
 				"Tiny Potato",
-				SpriteBuilder.start("minifabric-api", SpriteSheetType.ITEMS).build(),
+				new SpriteLinker.LinkedSprite(SpriteLinker.SpriteType.Item, "tiny-potato"),
 				10
 			)
 		);
 		
 		System.out.println("Register tiles");
 		String name = "Tater Tile";
-		Tile tile = new FabricTileImpl(name, SpriteBuilder.start("minifabric-api", SpriteSheetType.TILES).size(3, 3).build());
+		Tile tile = new FabricTileImpl(name, new SpriteAnimation(SpriteLinker.SpriteType.Tile, "tater-tile"));
 		TileRegistry.register(tile);
-		ItemRegistry.register(new FabricTileItemImpl(name, (new Sprite(0, 1)), name, "grass"));
+		//ItemRegistry.register(new FabricTileItemImpl(name, new SpriteLinker.LinkedSprite(SpriteLinker.SpriteType.Item, "tater-tile"), name, "grass"));
 		
 		DimensionInfo taterWorld = DimensionRegistry.register("Tater World");
 		System.out.println(taterWorld.getName() + " " + taterWorld.getIndex() + " " + taterWorld.getDepth());
@@ -56,17 +58,17 @@ public class TestEntrypoint implements ModInitializer {
 		name = "Tater Teleport";
 		tile = new Teleport(
 			name,
-			SpriteBuilder.start("minifabric-api", SpriteSheetType.TILES).size(3, 3).build(),
+			new SpriteAnimation(SpriteLinker.SpriteType.Tile, "tater-teleport"),
 			taterWorld
 		);
 		TileRegistry.register(tile);
-		ItemRegistry.register(new FabricTileItemImpl(name, (new Sprite(0, 1)), name, "grass"));
+		//ItemRegistry.register(new FabricTileItemImpl(name, new SpriteLinker.LinkedSprite(SpriteLinker.SpriteType.Tile, "teleport"), name, "grass"));
 	}
 	
 	private static class Teleport extends FabricTileImpl {
 		private final DimensionInfo dimension;
 		
-		public Teleport(String name, Sprite sprite, DimensionInfo dimension) {
+		public Teleport(String name, SpriteAnimation sprite, DimensionInfo dimension) {
 			super(name, sprite);
 			this.dimension = dimension;
 		}

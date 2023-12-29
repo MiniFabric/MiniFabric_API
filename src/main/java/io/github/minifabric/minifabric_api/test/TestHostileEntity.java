@@ -4,12 +4,12 @@ import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.core.io.Settings;
 import minicraft.entity.mob.EnemyMob;
-import minicraft.gfx.MobSprite;
+import minicraft.gfx.SpriteLinker;
 import minicraft.item.Items;
 
 public class TestHostileEntity extends EnemyMob {
-    static MobSprite testSprite = new MobSprite(2, 0, 2, 2, 0, FabricSpriteSheet.getSheetPos("minifabric-api", SpriteSheetType.ENTITIES));
-    private static MobSprite[][][] sprites = new MobSprite[][][] {
+    static SpriteLinker.LinkedSprite testSprite = new SpriteLinker.LinkedSprite(SpriteLinker.SpriteType.Entity, "hostile-test-entity");
+    private static SpriteLinker.LinkedSprite[][][] sprites = new SpriteLinker.LinkedSprite[][][] {
             {{testSprite}, {testSprite}, {testSprite}, {testSprite}},
             {{testSprite}, {testSprite}, {testSprite}, {testSprite}}};
 

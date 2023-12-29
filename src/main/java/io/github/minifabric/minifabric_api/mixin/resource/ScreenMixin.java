@@ -3,7 +3,6 @@ package io.github.minifabric.minifabric_api.mixin.resource;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.gfx.Screen;
-import minicraft.gfx.SpriteSheet;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Mixin(value = Screen.class, priority = 750)
-public abstract class ScreenMixin {
+public abstract class ScreenMixin {/*
 
 	@Shadow
 	private SpriteSheet[] sheets;
@@ -53,7 +52,7 @@ public abstract class ScreenMixin {
 		 * It could probably be done by scanning the path for any files containing the type name,
 		 * allowing for something like `entities2.png`, or `tiles_mechanical.png`, or even
 		 * `magical_items_wands.png`.
-		 */
+		 *
 		Path childPath = path.resolve(("assets/"+container.getMetadata().getId()+"/textures/" + type.getFileName() + ".png").replace("/", path.getFileSystem().getSeparator())).toAbsolutePath().normalize();
 		if(childPath.startsWith(path) && Files.exists(childPath)){
 			Logger.debug("Sheet found in " + container.getMetadata().getId() + " for " + type.name());
@@ -77,5 +76,5 @@ public abstract class ScreenMixin {
 
 		}
 	}
-
+*/
 }

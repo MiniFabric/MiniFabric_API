@@ -1,10 +1,10 @@
 package io.github.minifabric.minifabric_api.impl.tiles;
 
-import minicraft.gfx.Sprite;
+import minicraft.gfx.SpriteAnimation;
 import minicraft.level.tile.Tile;
 
 public class FabricTileImpl extends Tile {
-	public FabricTileImpl(String name, Sprite sprite) {
-		super(name, sprite);
+	public FabricTileImpl(String name, SpriteAnimation sheet) {
+		super(name, sheet);
 	}
 }

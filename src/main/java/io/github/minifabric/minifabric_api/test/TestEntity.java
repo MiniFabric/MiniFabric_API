@@ -4,13 +4,13 @@ import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.core.io.Settings;
 import minicraft.entity.mob.PassiveMob;
-import minicraft.gfx.MobSprite;
+import minicraft.gfx.SpriteLinker;
 import minicraft.item.Items;
 
 public class TestEntity extends PassiveMob {
-    static MobSprite testSprite = new MobSprite(0, 0, 2, 2, 0, FabricSpriteSheet.getSheetPos("minifabric-api", SpriteSheetType.ENTITIES));
+    static SpriteLinker.LinkedSprite testSprite = new SpriteLinker.LinkedSprite(SpriteLinker.SpriteType.Entity, "test-entity");
 
-    private static MobSprite[][] sprites = new MobSprite[][] {
+    private static SpriteLinker.LinkedSprite[][] sprites = new SpriteLinker.LinkedSprite[][] {
             {testSprite, testSprite},
             {testSprite, testSprite},
             {testSprite, testSprite},

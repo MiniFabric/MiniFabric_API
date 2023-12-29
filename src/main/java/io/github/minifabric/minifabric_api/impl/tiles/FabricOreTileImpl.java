@@ -9,29 +9,41 @@ import minicraft.entity.mob.Mob;
 import minicraft.entity.mob.Player;
 import minicraft.entity.particle.SmashParticle;
 import minicraft.entity.particle.TextParticle;
-import minicraft.gfx.Color;
-import minicraft.gfx.Screen;
-import minicraft.gfx.Sprite;
+import minicraft.gfx.*;
 import minicraft.item.Item;
 import minicraft.item.ToolItem;
 import minicraft.item.ToolType;
 import minicraft.level.Level;
+import minicraft.level.tile.OreTile;
 import minicraft.level.tile.Tile;
 import minicraft.level.tile.Tiles;
 
 public class FabricOreTileImpl extends Tile {
-	protected Sprite sprite;
+	protected SpriteAnimation sheet;
+	protected boolean isCloudType;
 	protected Item drop;
-	
-	public FabricOreTileImpl(String name, Item drop, Sprite sprite) {
-		super(name, sprite);
-		this.sprite = super.sprite;
+
+	public FabricOreTileImpl(String name, Item drop, SpriteAnimation sheet, boolean isCloud) {
+		super(name, sheet);
+		this.isCloudType = isCloud;
 		this.drop = drop;
+	}
+
+	public FabricOreTileImpl(String name, Item drop, String spriteId, boolean isCloud) {
+		this(name, drop, new SpriteAnimation(SpriteLinker.SpriteType.Tile, spriteId), isCloud);
+	}
+
+	public FabricOreTileImpl(String name, Item drop, SpriteAnimation sheet) {
+		this(name, drop, sheet, false);
+	}
+
+	public FabricOreTileImpl(String name, Item drop, String spriteId) {
+		this(name, drop, new SpriteAnimation(SpriteLinker.SpriteType.Tile, spriteId), false);
 	}
 	
 	public void render(Screen screen, Level level, int x, int y) {
-		this.sprite.color = DirtTileInvoker.invokeDCol(level.depth);
-		this.sprite.render(screen, x << 4, y << 4);
+		Tiles.get(isCloudType ? "cloud" : "dirt").render(screen, level, x, y);
+		this.sheet.render(screen, level, x, y);
 	}
 	
 	public boolean mayPass(Level level, int x, int y, Entity e) {
@@ -72,7 +84,7 @@ public class FabricOreTileImpl extends Tile {
 		}
 		
 		level.add(new SmashParticle(x * 16, y * 16));
-		Sound.monsterHurt.play();
+		Sound.play("monsterhurt");
 		level.add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, Color.RED));
 		if (dmg > 0) {
 			int count = this.random.nextInt(2);

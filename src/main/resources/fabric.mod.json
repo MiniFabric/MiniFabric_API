@@ -34,7 +34,7 @@
 
 	"depends": {
 		"fabricloader": ">=0.13.0",
-		"minicraftplus": ">=2.0.7",
+		"minicraftplus": ">=2.2.0-dev3",
 		"java": ">=16"
 	}
 }

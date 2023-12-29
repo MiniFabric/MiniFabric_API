@@ -92,6 +92,6 @@ public class SpriteBuilder {
 	 * @return {@link Sprite}
 	 */
 	public Sprite build() {
-		return new Sprite(sx, sy, sw, sh, sheet, mirror, onePixel);
+		return new Sprite(new Sprite.Px[][]{});
 	}
 }
