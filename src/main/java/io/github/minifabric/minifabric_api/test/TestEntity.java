@@ -3,18 +3,13 @@ package io.github.minifabric.minifabric_api.test;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.core.io.Settings;
+import minicraft.entity.mob.Mob;
 import minicraft.entity.mob.PassiveMob;
 import minicraft.gfx.SpriteLinker;
 import minicraft.item.Items;
 
 public class TestEntity extends PassiveMob {
-    static SpriteLinker.LinkedSprite testSprite = new SpriteLinker.LinkedSprite(SpriteLinker.SpriteType.Entity, "test-entity");
-
-    private static SpriteLinker.LinkedSprite[][] sprites = new SpriteLinker.LinkedSprite[][] {
-            {testSprite, testSprite},
-            {testSprite, testSprite},
-            {testSprite, testSprite},
-            {testSprite, testSprite}};
+    private static SpriteLinker.LinkedSprite[][] sprites = Mob.compileMobSpriteAnimations(0, 0, "happer_tater");
 
     public TestEntity() {
         super(sprites);

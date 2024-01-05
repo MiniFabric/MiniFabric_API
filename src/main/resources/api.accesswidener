@@ -1,0 +1,7 @@
+accessWidener v2 intermediary
+accessible class minicraft/screen/ResourcePackDisplay$ResourcePack
+accessible method minicraft/screen/ResourcePackDisplay$ResourcePack <init> (Ljava/net/URL;ILjava/lang/String;Ljava/lang/String;)V
+accessible method minicraft/screen/ResourcePackDisplay$ResourcePack getResourceAsStream (Ljava/lang/String;)Ljava/io/InputStream;
+accessible method minicraft/screen/ResourcePackDisplay$ResourcePack getFiles (Ljava/lang/String;Lminicraft/screen/ResourcePackDisplay$ResourcePack$FilesFilter;)Ljava/util/ArrayList;
+
+

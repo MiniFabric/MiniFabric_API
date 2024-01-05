@@ -17,6 +17,7 @@ import minicraft.level.Level;
 import minicraft.level.tile.OreTile;
 import minicraft.level.tile.Tile;
 import minicraft.level.tile.Tiles;
+import minicraft.util.AdvancementElement;
 
 public class FabricOreTileImpl extends Tile {
 	protected SpriteAnimation sheet;
@@ -26,19 +27,8 @@ public class FabricOreTileImpl extends Tile {
 	public FabricOreTileImpl(String name, Item drop, SpriteAnimation sheet, boolean isCloud) {
 		super(name, sheet);
 		this.isCloudType = isCloud;
+		this.sheet = sheet;
 		this.drop = drop;
-	}
-
-	public FabricOreTileImpl(String name, Item drop, String spriteId, boolean isCloud) {
-		this(name, drop, new SpriteAnimation(SpriteLinker.SpriteType.Tile, spriteId), isCloud);
-	}
-
-	public FabricOreTileImpl(String name, Item drop, SpriteAnimation sheet) {
-		this(name, drop, sheet, false);
-	}
-
-	public FabricOreTileImpl(String name, Item drop, String spriteId) {
-		this(name, drop, new SpriteAnimation(SpriteLinker.SpriteType.Tile, spriteId), false);
 	}
 	
 	public void render(Screen screen, Level level, int x, int y) {
@@ -56,17 +46,19 @@ public class FabricOreTileImpl extends Tile {
 	}
 	
 	public boolean interact(Level level, int xt, int yt, Player player, Item item, Direction attackDir) {
-		if (Game.isMode("Creative")) {
+		if (Game.isMode("minicraft.settings.mode.creative")) {
 			return false;
 		}
 		else {
 			if (item instanceof ToolItem tool) {
 				if (tool.type == ToolType.Pickaxe && player.payStamina(6 - tool.level) && tool.payDurability()) {
+					int data = level.getData(xt, yt);
 					this.hurt(level, xt, yt, 1);
+					AdvancementElement.AdvancementTrigger.ItemUsedOnTileTrigger.INSTANCE.trigger(new AdvancementElement.AdvancementTrigger.ItemUsedOnTileTrigger.ItemUsedOnTileTriggerConditionHandler.ItemUsedOnTileTriggerConditions(item, this, data, xt, yt, level.depth));
 					return true;
 				}
 			}
-			
+
 			return false;
 		}
 	}
@@ -78,7 +70,7 @@ public class FabricOreTileImpl extends Tile {
 	public void hurt(Level level, int x, int y, int dmg) {
 		int damage = level.getData(x, y) + 1;
 		int oreH = this.random.nextInt(10) + 3;
-		if (Game.isMode("Creative")) {
+		if (Game.isMode("minicraft.settings.mode.creative")) {
 			damage = oreH;
 			dmg = oreH;
 		}

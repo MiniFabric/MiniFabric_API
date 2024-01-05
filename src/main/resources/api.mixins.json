@@ -1,27 +1,31 @@
 {
-	"required": true,
-	"minVersion": "0.8",
-	"package": "io.github.minifabric.minifabric_api.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"dimension.EnemyMobMixin",
-		"dimension.LevelGenMixin",
-		"dimension.LevelMixin",
-		"dimension.LoadMixin",
-		"dimension.WorldMixin",
-		"entity.LevelMixin",
-		"item.FoodItemInvoker",
-		"item.ItemsInvoker",
-		"resource.ScreenMixin",
-		"saveload.LoadMixin",
-		"tiles.DirtTileInvoker",
-		"tiles.LevelGenMixin",
-		"tiles.TilesAccessor",
-		"tiles.TilesMixin"
-	],
-	"client": [
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.minifabric.minifabric_api.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "dimension.EnemyMobMixin",
+    "dimension.LevelGenMixin",
+    "dimension.LevelMixin",
+    "dimension.LoadMixin",
+    "dimension.WorldMixin",
+    "entity.LevelMixin",
+    "events.entity.MobMixin",
+    "events.level.LevelMixin",
+    "item.FoodItemInvoker",
+    "item.ItemsInvoker",
+    "resource.ResourcePackDisplayMixin",
+    "resource.ScreenMixin",
+    "saveload.LoadMixin",
+    "tiles.DirtTileInvoker",
+    "tiles.LevelGenMixin",
+    "tiles.TilesAccessor",
+    "tiles.TilesInvoker",
+    "tiles.TilesMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

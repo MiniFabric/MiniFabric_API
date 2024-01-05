@@ -4,24 +4,27 @@ import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet;
 import io.github.minifabric.minifabric_api.impl.resource.FabricSpriteSheet.SpriteSheetType;
 import minicraft.core.io.Settings;
 import minicraft.entity.mob.EnemyMob;
+import minicraft.entity.mob.Mob;
 import minicraft.gfx.SpriteLinker;
 import minicraft.item.Items;
 
 public class TestHostileEntity extends EnemyMob {
-    static SpriteLinker.LinkedSprite testSprite = new SpriteLinker.LinkedSprite(SpriteLinker.SpriteType.Entity, "hostile-test-entity");
-    private static SpriteLinker.LinkedSprite[][][] sprites = new SpriteLinker.LinkedSprite[][][] {
-            {{testSprite}, {testSprite}, {testSprite}, {testSprite}},
-            {{testSprite}, {testSprite}, {testSprite}, {testSprite}}};
+    private static SpriteLinker.LinkedSprite[][][] sprites = new SpriteLinker.LinkedSprite[][][]{Mob.compileMobSpriteAnimations(0, 0, "anger_tater"),
+            Mob.compileMobSpriteAnimations(2, 0, "anger_tater"),
+            Mob.compileMobSpriteAnimations(4, 0, "anger_tater"),
+            Mob.compileMobSpriteAnimations(6, 0, "anger_tater")};
 
     public TestHostileEntity(int lvl) {
         super(lvl, sprites, 5, 100);
     }
 
     public void die() {
-        if (Settings.get("diff").equals("Easy")) dropItem(2, 4, Items.get("Tiny Potato"));
-        if (Settings.get("diff").equals("Normal")) dropItem(1, 3, Items.get("Tiny Potato"));
-        if (Settings.get("diff").equals("Hard")) dropItem(1, 2, Items.get("Tiny Potato"));
-
+        switch (Settings.get("diff").toString()) {
+            case "minicraft.settings.difficulty.easy" -> dropItem(2, 4, TestEntrypoint.tiny_potato);
+            case "minicraft.settings.difficulty.normal" -> dropItem(1, 3, TestEntrypoint.tiny_potato);
+            case "minicraft.settings.difficulty.hard" -> dropItem(1, 2, TestEntrypoint.tiny_potato);
+            default -> dropItem(2, 4, TestEntrypoint.tiny_potato);
+        }
         super.die();
     }
 }

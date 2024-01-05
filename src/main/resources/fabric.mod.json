@@ -5,13 +5,13 @@
 	"version": "${version}",
 	"environment": "*",
 
-	"description": "Core API module providing key hooks and inter-compatibility features for Minicraft/MinicraftPlus.",
+	"description": "Core API module providing key hooks and inter-compatibility features for MinicraftPlus.",
 	"authors": [
-		"MiniFabric",
-		"PseudoDistant",
-		"coolsim"
+		"MiniFabric"
 	],
 	"contributors": [
+		"PseudoDistant",
+		"coolsim",
 		"paulevs"
 	],
 	"contact": {
@@ -33,8 +33,9 @@
 	"icon": "assets/minifabric-api/icon.png",
 
 	"depends": {
-		"fabricloader": ">=0.13.0",
-		"minicraftplus": ">=2.2.0-dev3",
+		"fabricloader": ">=0.15.0",
+		"minicraftplus": ">=2.2.0-dev4",
 		"java": ">=16"
-	}
+	},
+	"accessWidener": "api.accesswidener"
 }
